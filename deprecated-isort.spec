@@ -4,7 +4,7 @@
 #
 Name     : deprecated-isort
 Version  : 4.3.16
-Release  : 42
+Release  : 43
 URL      : https://files.pythonhosted.org/packages/08/d2/bbbb582ea75a3237e16e7d1f37fa3bda72e9690097d7a24dfd7d80f899d0/isort-4.3.16.tar.gz
 Source0  : https://files.pythonhosted.org/packages/08/d2/bbbb582ea75a3237e16e7d1f37fa3bda72e9690097d7a24dfd7d80f899d0/isort-4.3.16.tar.gz
 Summary  : A Python utility / library to sort Python imports.
@@ -14,12 +14,17 @@ Requires: deprecated-isort-bin = %{version}-%{release}
 Requires: deprecated-isort-license = %{version}-%{release}
 Requires: deprecated-isort-python = %{version}-%{release}
 Requires: appdirs
-Requires: futures
+Requires: deprecated-futures-legacypython
 Requires: pip
 Requires: pipreqs
+Requires: toml
+BuildRequires : appdirs
 BuildRequires : buildreq-distutils
 BuildRequires : buildreq-distutils3
-BuildRequires : futures
+BuildRequires : deprecated-futures-legacypython
+BuildRequires : pip
+BuildRequires : pipreqs
+BuildRequires : toml
 
 %description
 .. image:: https://raw.github.com/timothycrosley/isort/master/logo.png
@@ -67,7 +72,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1554341240
+export SOURCE_DATE_EPOCH=1559191851
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python2 setup.py build -b py2
 
